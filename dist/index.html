@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A guided brand discovery workshop that turns client direction into a Codex-ready website brief." />
+    <title>Brand Discovery Studio</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Brand Discovery Studio home">
+        <span class="brand-mark">B</span>
+        <span>Brand Discovery Studio</span>
+      </a>
+      <div class="topbar-meta">
+        <span class="draft-status" id="draftStatus">Draft saved locally</span>
+        <button class="text-button" id="clearDraft" type="button">Reset</button>
+      </div>
+    </header>
+
+    <main class="app-shell">
+      <aside class="sidebar" aria-label="Questionnaire progress">
+        <p class="eyebrow">Client workshop</p>
+        <h1>Turn a conversation into a design system.</h1>
+        <p class="sidebar-copy">A guided discovery session for defining a brand, aligning direction, and generating a build-ready brief.</p>
+
+        <nav class="step-nav" id="stepNav">
+          <button class="step-link active" type="button" data-step="0"><span>01</span>Foundation</button>
+          <button class="step-link" type="button" data-step="1"><span>02</span>Positioning</button>
+          <button class="step-link" type="button" data-step="2"><span>03</span>Personality</button>
+          <button class="step-link" type="button" data-step="3"><span>04</span>References</button>
+          <button class="step-link" type="button" data-step="4"><span>05</span>Visual system</button>
+          <button class="step-link" type="button" data-step="5"><span>06</span>Experience</button>
+          <button class="step-link" type="button" data-step="6"><span>07</span>Generate</button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <span id="progressText">Step 1 of 7</span>
+          <div class="progress-track"><span id="progressBar"></span></div>
+        </div>
+      </aside>
+
+      <section class="workspace">
+        <form id="discoveryForm" novalidate>
+          <input type="text" name="website_confirm" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+          <section class="form-step active" data-panel="0">
+            <div class="section-heading">
+              <p class="step-kicker">01 / Foundation</p>
+              <h2>Start with the business.</h2>
+              <p>Capture the facts that every design decision should serve.</p>
+            </div>
+
+            <div class="field-grid two-col">
+              <label class="field">
+                <span>Client or business name <b>*</b></span>
+                <input name="client_name" type="text" placeholder="Northstar Coffee" required />
+              </label>
+              <label class="field">
+                <span>Project name</span>
+                <input name="project_name" type="text" placeholder="Website redesign" />
+              </label>
+              <label class="field">
+                <span>Primary contact <b>*</b></span>
+                <input name="contact_name" type="text" placeholder="Jordan Lee" required />
+              </label>
+              <label class="field">
+                <span>Contact email <b>*</b></span>
+                <input name="contact_email" type="email" placeholder="jordan@example.com" required />
+              </label>
+              <label class="field full">
+                <span>Existing website</span>
+                <input name="existing_website" type="url" placeholder="https://example.com" />
+              </label>
+              <label class="field full">
+                <span>What does the business offer? <b>*</b></span>
+                <textarea name="business_offer" rows="4" placeholder="Describe the products, services, and value delivered." required></textarea>
+              </label>
+              <label class="field full">
+                <span>What is the primary goal of this project? <b>*</b></span>
+                <select name="project_goal" required>
+                  <option value="">Choose a goal</option>
+                  <option>Generate qualified leads</option>
+                  <option>Sell products or services</option>
+                  <option>Book appointments</option>
+                  <option>Explain a complex offer</option>
+                  <option>Build credibility</option>
+                  <option>Launch a new brand</option>
+                  <option>Modernize an existing brand</option>
+                  <option>Support an application or product</option>
+                  <option>Other</option>
+                </select>
+              </label>
+              <label class="field full">
+                <span>Who is the primary audience? <b>*</b></span>
+                <textarea name="primary_audience" rows="3" placeholder="Describe their needs, context, and level of familiarity." required></textarea>
+              </label>
+              <label class="field full">
+                <span>What is the most important action visitors should take?</span>
+                <input name="primary_action" type="text" placeholder="Schedule a consultation, make a purchase, join a waitlist…" />
+              </label>
+            </div>
+          </section>
+
+          <section class="form-step" data-panel="1">
+            <div class="section-heading">
+              <p class="step-kicker">02 / Positioning</p>
+              <h2>Define the point of view.</h2>
+              <p>Strong visual systems begin with a clear position—not decoration.</p>
+            </div>
+
+            <div class="field-grid">
+              <label class="field">
+                <span>What makes this business meaningfully different? <b>*</b></span>
+                <textarea name="differentiator" rows="4" placeholder="Why should the right client choose this brand instead of an alternative?" required></textarea>
+              </label>
+              <label class="field">
+                <span>Complete: “We are the only brand that…”</span>
+                <textarea name="only_statement" rows="3" placeholder="Finish the sentence in plain language."></textarea>
+              </label>
+              <label class="field">
+                <span>Describe the brand in three to five words <b>*</b></span>
+                <input name="brand_words" type="text" placeholder="Precise, warm, progressive, grounded" required />
+              </label>
+              <label class="field">
+                <span>What should people feel after interacting with the brand?</span>
+                <textarea name="desired_feeling" rows="3" placeholder="Confident, understood, energized, reassured…"></textarea>
+              </label>
+              <label class="field">
+                <span>What should the brand never feel like?</span>
+                <textarea name="avoid_personality" rows="3" placeholder="Generic, childish, corporate, chaotic…"></textarea>
+              </label>
+              <fieldset class="field choice-field">
+                <legend>Current brand stage</legend>
+                <div class="choice-grid three">
+                  <label class="choice-card"><input type="radio" name="brand_stage" value="New brand" checked /><span><b>New</b><small>Starting from zero</small></span></label>
+                  <label class="choice-card"><input type="radio" name="brand_stage" value="Evolving brand" /><span><b>Evolving</b><small>Keeping some equity</small></span></label>
+                  <label class="choice-card"><input type="radio" name="brand_stage" value="Established brand" /><span><b>Established</b><small>Following existing rules</small></span></label>
+                </div>
+              </fieldset>
+            </div>
+          </section>
+
+          <section class="form-step" data-panel="2">
+            <div class="section-heading">
+              <p class="step-kicker">03 / Personality</p>
+              <h2>Locate the brand on the spectrum.</h2>
+              <p>Choose the position that feels most natural. The middle is intentionally valid.</p>
+            </div>
+            <div class="spectrum-list">
+              <label class="spectrum"><span>Minimal</span><input type="range" name="scale_minimal_expressive" min="1" max="5" value="3" /><output>Balanced</output><span>Expressive</span></label>
+              <label class="spectrum"><span>Serious</span><input type="range" name="scale_serious_playful" min="1" max="5" value="3" /><output>Balanced</output><span>Playful</span></label>
+              <label class="spectrum"><span>Traditional</span><input type="range" name="scale_traditional_modern" min="1" max="5" value="4" /><output>Modern</output><span>Modern</span></label>
+              <label class="spectrum"><span>Professional</span><input type="range" name="scale_professional_casual" min="1" max="5" value="2" /><output>Mostly professional</output><span>Casual</span></label>
+              <label class="spectrum"><span>Quiet</span><input type="range" name="scale_quiet_bold" min="1" max="5" value="3" /><output>Balanced</output><span>Bold</span></label>
+              <label class="spectrum"><span>Technical</span><input type="range" name="scale_technical_human" min="1" max="5" value="4" /><output>Human</output><span>Human</span></label>
+              <label class="spectrum"><span>Exclusive</span><input type="range" name="scale_exclusive_approachable" min="1" max="5" value="4" /><output>Approachable</output><span>Approachable</span></label>
+              <label class="spectrum"><span>Warm</span><input type="range" name="scale_warm_cool" min="1" max="5" value="3" /><output>Balanced</output><span>Cool</span></label>
+            </div>
+
+            <fieldset class="field choice-field tone-field">
+              <legend>Preferred written voice <span>Select up to three</span></legend>
+              <div class="chip-grid" data-limit="3">
+                <label><input type="checkbox" name="voice" value="Clear" /><span>Clear</span></label>
+                <label><input type="checkbox" name="voice" value="Conversational" /><span>Conversational</span></label>
+                <label><input type="checkbox" name="voice" value="Expert" /><span>Expert</span></label>
+                <label><input type="checkbox" name="voice" value="Reassuring" /><span>Reassuring</span></label>
+                <label><input type="checkbox" name="voice" value="Energetic" /><span>Energetic</span></label>
+                <label><input type="checkbox" name="voice" value="Direct" /><span>Direct</span></label>
+                <label><input type="checkbox" name="voice" value="Educational" /><span>Educational</span></label>
+                <label><input type="checkbox" name="voice" value="Witty" /><span>Witty</span></label>
+              </div>
+            </fieldset>
+          </section>
+
+          <section class="form-step" data-panel="3">
+            <div class="section-heading">
+              <p class="step-kicker">04 / References</p>
+              <h2>Build a shared visual language.</h2>
+              <p>References are useful when the reason matters more than the URL.</p>
+            </div>
+            <div class="reference-list">
+              <div class="reference-card">
+                <span class="reference-number">01</span>
+                <label class="field"><span>Website or brand you like</span><input name="reference_1_url" type="url" placeholder="https://…" /></label>
+                <label class="field"><span>What specifically works?</span><textarea name="reference_1_reason" rows="2" placeholder="Typography, restraint, layout, energy…"></textarea></label>
+              </div>
+              <div class="reference-card">
+                <span class="reference-number">02</span>
+                <label class="field"><span>Website or brand you like</span><input name="reference_2_url" type="url" placeholder="https://…" /></label>
+                <label class="field"><span>What specifically works?</span><textarea name="reference_2_reason" rows="2" placeholder="Describe the useful qualities."></textarea></label>
+              </div>
+              <div class="reference-card">
+                <span class="reference-number">03</span>
+                <label class="field"><span>Website or brand you like</span><input name="reference_3_url" type="url" placeholder="https://…" /></label>
+                <label class="field"><span>What specifically works?</span><textarea name="reference_3_reason" rows="2" placeholder="Describe the useful qualities."></textarea></label>
+              </div>
+            </div>
+            <div class="field-grid two-col top-gap">
+              <label class="field"><span>A reference to avoid</span><input name="avoid_reference_url" type="url" placeholder="https://…" /></label>
+              <label class="field"><span>Why should it be avoided?</span><input name="avoid_reference_reason" type="text" placeholder="Too busy, too sterile, hard to navigate…" /></label>
+              <label class="field full"><span>Existing assets and non-negotiables</span><textarea name="existing_assets" rows="4" placeholder="Logo, brand guide, packaging, colors, photography, legal requirements…"></textarea></label>
+            </div>
+          </section>
+
+          <section class="form-step" data-panel="4">
+            <div class="section-heading">
+              <p class="step-kicker">05 / Visual system</p>
+              <h2>Choose the visual ingredients.</h2>
+              <p>These choices will become concrete tokens and implementation rules.</p>
+            </div>
+
+            <div class="field-grid two-col">
+              <label class="field"><span>Existing brand colors</span><input name="existing_colors" type="text" placeholder="#1B4332, cream, warm gray…" /></label>
+              <label class="field"><span>Colors to avoid</span><input name="avoid_colors" type="text" placeholder="Bright red, neon colors…" /></label>
+              <label class="field"><span>Preferred appearance</span><select name="appearance"><option>Light-first</option><option>Dark-first</option><option>Equal light and dark modes</option></select></label>
+              <label class="field"><span>Color energy</span><select name="color_energy"><option>Neutral and restrained</option><option>Muted and atmospheric</option><option>Natural and earthy</option><option>Bright and optimistic</option><option>Bold and high-contrast</option><option>Mostly monochrome</option></select></label>
+              <label class="field"><span>Existing fonts</span><input name="existing_fonts" type="text" placeholder="Font names or “none”" /></label>
+              <label class="field"><span>Typography direction</span><select name="typography_direction"><option>Clean and modern</option><option>Editorial and expressive</option><option>Technical and precise</option><option>Friendly and rounded</option><option>Luxurious and refined</option><option>Traditional and trustworthy</option><option>Bold and graphic</option></select></label>
+            </div>
+
+            <div class="field-grid top-gap">
+              <fieldset class="field choice-field"><legend>Icon direction</legend><div class="choice-grid three">
+                <label class="choice-card"><input type="radio" name="icon_style" value="Outline" checked /><span><b>Outline</b><small>Light and precise</small></span></label>
+                <label class="choice-card"><input type="radio" name="icon_style" value="Solid" /><span><b>Solid</b><small>Direct and strong</small></span></label>
+                <label class="choice-card"><input type="radio" name="icon_style" value="Custom geometric" /><span><b>Geometric</b><small>Distinct and ownable</small></span></label>
+              </div></fieldset>
+              <fieldset class="field choice-field"><legend>Image direction <span>Select all that fit</span></legend><div class="chip-grid">
+                <label><input type="checkbox" name="imagery" value="Editorial photography" /><span>Photography</span></label>
+                <label><input type="checkbox" name="imagery" value="Illustration" /><span>Illustration</span></label>
+                <label><input type="checkbox" name="imagery" value="Abstract graphics" /><span>Abstract</span></label>
+                <label><input type="checkbox" name="imagery" value="Product screenshots" /><span>Product UI</span></label>
+                <label><input type="checkbox" name="imagery" value="Three-dimensional renders" /><span>3D</span></label>
+                <label><input type="checkbox" name="imagery" value="Minimal or no imagery" /><span>Minimal</span></label>
+              </div></fieldset>
+              <label class="field"><span>Image subjects and art direction</span><textarea name="image_direction" rows="3" placeholder="What should images show, and what should they avoid?"></textarea></label>
+            </div>
+          </section>
+
+          <section class="form-step" data-panel="5">
+            <div class="section-heading">
+              <p class="step-kicker">06 / Experience</p>
+              <h2>Shape how the interface behaves.</h2>
+              <p>Density, depth, motion, and accessibility complete the system.</p>
+            </div>
+
+            <div class="field-grid two-col">
+              <label class="field"><span>Spacing and density</span><select name="spacing"><option>Spacious and editorial</option><option>Balanced and versatile</option><option>Compact and information-dense</option></select></label>
+              <label class="field"><span>Corner style</span><select name="corner_style"><option>Mostly square</option><option>Slightly rounded</option><option>Softly rounded</option><option>Highly rounded and pill-shaped</option></select></label>
+              <label class="field"><span>Visual depth</span><select name="visual_depth"><option>Flat with strong typography</option><option>Subtle borders and layers</option><option>Soft shadows and elevation</option><option>Dramatic depth and contrast</option></select></label>
+              <label class="field"><span>Motion level</span><select name="motion_level"><option>Minimal and functional</option><option>Subtle and polished</option><option>Moderate and expressive</option><option>Bold and cinematic</option></select></label>
+              <label class="field"><span>Primary device</span><select name="primary_device"><option>Mobile-first</option><option>Desktop-first</option><option>All devices equally</option></select></label>
+              <label class="field"><span>Accessibility target</span><select name="accessibility"><option>WCAG AA as standard</option><option>Enhanced accessibility / WCAG AAA where practical</option><option>Specific requirements provided below</option></select></label>
+              <label class="field full"><span>Required pages or product areas <b>*</b></span><textarea name="required_pages" rows="4" placeholder="Home, About, Services, Contact, Pricing, Dashboard, Account…" required></textarea></label>
+              <fieldset class="field choice-field full"><legend>Likely interface elements <span>Select all that apply</span></legend><div class="chip-grid">
+                <label><input type="checkbox" name="components" value="Lead forms" /><span>Lead forms</span></label>
+                <label><input type="checkbox" name="components" value="Booking" /><span>Booking</span></label>
+                <label><input type="checkbox" name="components" value="Pricing" /><span>Pricing</span></label>
+                <label><input type="checkbox" name="components" value="Testimonials" /><span>Testimonials</span></label>
+                <label><input type="checkbox" name="components" value="Ecommerce" /><span>Ecommerce</span></label>
+                <label><input type="checkbox" name="components" value="Blog or resources" /><span>Blog</span></label>
+                <label><input type="checkbox" name="components" value="Dashboard" /><span>Dashboard</span></label>
+                <label><input type="checkbox" name="components" value="Tables and charts" /><span>Data</span></label>
+                <label><input type="checkbox" name="components" value="Account area" /><span>Accounts</span></label>
+              </div></fieldset>
+              <label class="field full"><span>Technical, accessibility, legal, or platform requirements</span><textarea name="requirements" rows="4" placeholder="CMS, ecommerce platform, languages, compliance, integrations, deadlines…"></textarea></label>
+              <label class="field full"><span>What would make this project feel successful?</span><textarea name="success_definition" rows="3" placeholder="Describe the outcome in the client's own words."></textarea></label>
+            </div>
+          </section>
+
+          <section class="form-step" data-panel="6">
+            <div class="section-heading final-heading">
+              <p class="step-kicker">07 / Generate</p>
+              <h2>Your Codex-ready brief.</h2>
+              <p>Review the summary, generate the working brief, then copy, download, or email it.</p>
+            </div>
+
+            <div class="review-grid" id="reviewGrid"></div>
+
+            <div class="output-card">
+              <div class="output-toolbar">
+                <div><span class="status-dot"></span><b>Generated brief</b></div>
+                <div class="toolbar-actions">
+                  <button class="small-button" id="copyBrief" type="button">Copy</button>
+                  <button class="small-button" id="downloadBrief" type="button">Download .md</button>
+                </div>
+              </div>
+              <textarea id="generatedBrief" aria-label="Generated Codex brief" spellcheck="false"></textarea>
+            </div>
+
+            <div class="submit-panel">
+              <div>
+                <p class="eyebrow">Finish the workshop</p>
+                <h3>Email the completed brief</h3>
+                <p>The full discovery record and generated Codex prompt will be sent securely to your studio inbox.</p>
+              </div>
+              <button class="submit-button" id="emailBrief" type="submit"><span>Email completed brief</span><span aria-hidden="true">↗</span></button>
+            </div>
+
+            <div class="notice" id="submitNotice" role="status" aria-live="polite"></div>
+          </section>
+
+          <div class="form-actions">
+            <button class="back-button" id="backButton" type="button">← Back</button>
+            <button class="next-button" id="nextButton" type="button"><span>Continue</span><span>→</span></button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="./app.js"></script>
+  </body>
+</html>
