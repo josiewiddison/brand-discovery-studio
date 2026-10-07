@@ -14,6 +14,7 @@ const toast = document.querySelector('#toast');
 const STORAGE_KEY = 'brand-discovery-studio-draft-v1';
 let currentStep = 0;
 let saveTimer;
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const scaleLabels = {
   scale_minimal_expressive: ['Strongly minimal', 'Mostly minimal', 'Balanced', 'Mostly expressive', 'Strongly expressive'],
@@ -100,7 +101,7 @@ function validateCurrentStep() {
   return true;
 }
 
-function goToStep(index, validate = false) {
+function goToStep(index, validate = false, shouldScroll = true) {
   if (validate && !validateCurrentStep()) return;
   currentStep = Math.max(0, Math.min(index, steps.length - 1));
   steps.forEach((step, i) => step.classList.toggle('active', i === currentStep));
@@ -109,12 +110,93 @@ function goToStep(index, validate = false) {
     button.classList.toggle('complete', i < currentStep);
   });
   progressBar.style.width = `${((currentStep + 1) / steps.length) * 100}%`;
-  progressText.textContent = `Step ${currentStep + 1} of ${steps.length}`;
+  progressText.textContent = navButtons[currentStep].textContent.trim();
   backButton.style.visibility = currentStep === 0 ? 'hidden' : 'visible';
   nextButton.style.display = currentStep === steps.length - 1 ? 'none' : 'flex';
   if (currentStep === steps.length - 1) renderOutput();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (shouldScroll) {
+    const formTop = document.querySelector('.app-shell').getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({ top: formTop, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+  }
+  if (window.gsap && !prefersReducedMotion) {
+    window.gsap.fromTo(steps[currentStep], { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: .55, ease: 'power3.out' });
+  }
   saveDraft();
+}
+
+function enterWorkshop() {
+  document.querySelector('#workshop').scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+}
+
+function initPresentation() {
+  document.querySelectorAll('[data-enter-workshop]').forEach((button) => button.addEventListener('click', enterWorkshop));
+
+  const panels = [...document.querySelectorAll('.discovery-panel')];
+  const activatePanel = (panel) => {
+    panels.forEach((item) => item.classList.toggle('active', item === panel));
+  };
+  panels.forEach((panel) => {
+    panel.addEventListener('click', () => activatePanel(panel));
+    panel.addEventListener('focus', () => activatePanel(panel));
+  });
+
+  if (!window.gsap || prefersReducedMotion) {
+    document.querySelectorAll('.manifesto-word').forEach((word) => { word.style.color = 'white'; });
+    return;
+  }
+
+  window.gsap.registerPlugin(window.ScrollTrigger);
+  window.gsap.timeline({ defaults: { ease: 'power3.out' } })
+    .from('.capsule-nav', { y: -30, opacity: 0, duration: .75 })
+    .from('.hero-kicker', { y: 18, opacity: 0, duration: .55 }, '-=.3')
+    .from('.hero h1', { y: 45, opacity: 0, duration: 1 }, '-=.35')
+    .from('.hero-footer', { y: 22, opacity: 0, duration: .65 }, '-=.55')
+    .from('.hero-image', { y: 60, opacity: 0, scale: .96, duration: 1.15 }, '-=1');
+
+  window.gsap.to('.hero-image img', {
+    scale: 1,
+    yPercent: 7,
+    ease: 'none',
+    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+  });
+
+  window.gsap.to('.orbit-one', {
+    rotate: 85,
+    yPercent: 30,
+    ease: 'none',
+    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+  });
+
+  window.gsap.to('.manifesto-word', {
+    color: '#ffffff',
+    stagger: .18,
+    ease: 'none',
+    scrollTrigger: { trigger: '.manifesto h2', start: 'top 78%', end: 'bottom 42%', scrub: .7 }
+  });
+
+  document.querySelectorAll('.process-card').forEach((card, index) => {
+    window.gsap.fromTo(card, { scale: .94, y: 50 }, {
+      scale: 1,
+      y: 0,
+      ease: 'none',
+      scrollTrigger: { trigger: card, start: 'top 92%', end: 'top 55%', scrub: true }
+    });
+    if (index < 2) {
+      window.gsap.to(card, {
+        scale: .96 - index * .01,
+        ease: 'none',
+        scrollTrigger: { trigger: card, start: 'top 18%', end: 'bottom top', scrub: true }
+      });
+    }
+  });
+
+  document.querySelectorAll('.magnetic').forEach((button) => {
+    button.addEventListener('pointermove', (event) => {
+      const bounds = button.getBoundingClientRect();
+      window.gsap.to(button, { x: (event.clientX - bounds.left - bounds.width / 2) * .13, y: (event.clientY - bounds.top - bounds.height / 2) * .13, duration: .3, ease: 'power2.out' });
+    });
+    button.addEventListener('pointerleave', () => window.gsap.to(button, { x: 0, y: 0, duration: .45, ease: 'elastic.out(1,.35)' }));
+  });
 }
 
 function buildBrief() {
@@ -361,6 +443,7 @@ document.querySelector('#clearDraft').addEventListener('click', () => {
 });
 form.addEventListener('submit', submitBrief);
 
+initPresentation();
 restoreDraft();
 updateRanges();
-goToStep(0);
+goToStep(0, false, false);

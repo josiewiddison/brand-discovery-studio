@@ -5,39 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="A guided brand discovery workshop that turns client direction into a Codex-ready website brief." />
     <title>Brand Discovery Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
-    <header class="topbar">
-      <a class="brand" href="#" aria-label="Brand Discovery Studio home">
+    <header class="capsule-nav" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Brand Discovery Studio home">
         <span class="brand-mark">B</span>
         <span>Brand Discovery Studio</span>
       </a>
-      <div class="topbar-meta">
-        <span class="draft-status" id="draftStatus">Draft saved locally</span>
-        <button class="text-button" id="clearDraft" type="button">Reset</button>
-      </div>
+      <nav class="nav-links" aria-label="Page sections"><a href="#approach">Approach</a><a href="#method">Method</a></nav>
+      <button class="nav-cta magnetic" type="button" data-enter-workshop>Begin discovery <span aria-hidden="true">↘</span></button>
     </header>
 
-    <main class="app-shell">
+    <main class="site-shell">
+      <section class="hero" id="top">
+        <div class="hero-orbit orbit-one" aria-hidden="true"></div>
+        <div class="hero-orbit orbit-two" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <p class="hero-kicker">A guided client workshop for thoughtful digital work</p>
+          <h1>Turn a real conversation into a <em>build-ready</em> brand system.</h1>
+          <div class="hero-footer">
+            <p>Capture the strategy, personality, visual language, and experience details Codex needs to design with intent.</p>
+            <button class="round-action magnetic" type="button" data-enter-workshop aria-label="Begin the brand discovery workshop"><span>Start</span><span aria-hidden="true">↘</span></button>
+          </div>
+        </div>
+        <figure class="hero-image image-reveal">
+          <img src="https://picsum.photos/seed/material-study/1000/1250" alt="Abstract architectural material study" />
+          <figcaption><span>Strategy into form</span><span>Guided in seven movements</span></figcaption>
+        </figure>
+      </section>
+
+      <div class="marquee" aria-label="Workshop outcomes"><div class="marquee-track">
+        <span>Brand clarity</span><i></i><span>Visual direction</span><i></i><span>Codex-ready brief</span><i></i><span>Client alignment</span><i></i>
+        <span aria-hidden="true">Brand clarity</span><i aria-hidden="true"></i><span aria-hidden="true">Visual direction</span><i aria-hidden="true"></i><span aria-hidden="true">Codex-ready brief</span><i aria-hidden="true"></i><span aria-hidden="true">Client alignment</span><i aria-hidden="true"></i>
+      </div></div>
+
+      <section class="approach" id="approach">
+        <div class="section-intro">
+          <p class="eyebrow">Built for the meeting</p>
+          <h2>Good design starts before the first screen.</h2>
+          <p>This guided format gives every client the language to make clear choices, even when they are not designers.</p>
+        </div>
+        <div class="discovery-accordion" data-accordion>
+          <article class="discovery-panel active" tabindex="0"><div class="panel-label"><span>Position</span><b>What makes the business matter.</b></div><img src="https://picsum.photos/seed/positioning-studio/900/1100" alt="Layered editorial forms" /><p>Align audience, offer, goals, and the action the site must create.</p></article>
+          <article class="discovery-panel" tabindex="0"><div class="panel-label"><span>Personality</span><b>How the brand should feel.</b></div><img src="https://picsum.photos/seed/personality-light/900/1100" alt="Light and shadow study" /><p>Locate the voice and visual energy on useful creative spectrums.</p></article>
+          <article class="discovery-panel" tabindex="0"><div class="panel-label"><span>System</span><b>What creates visual coherence.</b></div><img src="https://picsum.photos/seed/design-system-texture/900/1100" alt="Textural design detail" /><p>Choose typography, color, imagery, iconography, and spacing with purpose.</p></article>
+          <article class="discovery-panel" tabindex="0"><div class="panel-label"><span>Experience</span><b>How the interface should behave.</b></div><img src="https://picsum.photos/seed/interface-material/900/1100" alt="Modern spatial composition" /><p>Define responsive priorities, motion, accessibility, and required components.</p></article>
+        </div>
+      </section>
+
+      <section class="method" id="method">
+        <div class="manifesto"><p class="eyebrow">A clearer handoff</p><h2 aria-label="From scattered notes to one source of truth."><span class="manifesto-word">From</span> <span class="manifesto-word">scattered</span> <span class="manifesto-word">notes</span> <span class="manifesto-word serif">to</span> <span class="manifesto-word">one</span> <span class="manifesto-word">source</span> <span class="manifesto-word">of</span> <span class="manifesto-word">truth.</span></h2></div>
+        <div class="process-stack">
+          <article class="process-card"><span>Listen</span><h3>Guide the conversation.</h3><p>Use thoughtful prompts and structured choices to uncover the decisions hiding behind vague preferences.</p></article>
+          <article class="process-card"><span>Translate</span><h3>Turn direction into rules.</h3><p>The questionnaire converts client language into usable guidance for tokens, components, content, and motion.</p></article>
+          <article class="process-card"><span>Build</span><h3>Start Codex with context.</h3><p>Finish with a polished Markdown brief you can copy, download, email, and use as the foundation for DESIGN.md.</p></article>
+        </div>
+      </section>
+
+      <section class="workshop-intro" id="workshop">
+        <p class="eyebrow">The working session</p>
+        <h2>Let’s discover what the brand is ready to become.</h2>
+        <div class="workshop-meta"><p>Allow 25–40 minutes. The draft saves automatically on this device.</p><div><span class="draft-status" id="draftStatus">Draft saved locally</span><button class="text-button" id="clearDraft" type="button">Reset session</button></div></div>
+      </section>
+
+      <div class="app-shell">
       <aside class="sidebar" aria-label="Questionnaire progress">
-        <p class="eyebrow">Client workshop</p>
+        <p class="eyebrow">Discovery path</p>
         <h1>Turn a conversation into a design system.</h1>
         <p class="sidebar-copy">A guided discovery session for defining a brand, aligning direction, and generating a build-ready brief.</p>
 
         <nav class="step-nav" id="stepNav">
-          <button class="step-link active" type="button" data-step="0"><span>01</span>Foundation</button>
-          <button class="step-link" type="button" data-step="1"><span>02</span>Positioning</button>
-          <button class="step-link" type="button" data-step="2"><span>03</span>Personality</button>
-          <button class="step-link" type="button" data-step="3"><span>04</span>References</button>
-          <button class="step-link" type="button" data-step="4"><span>05</span>Visual system</button>
-          <button class="step-link" type="button" data-step="5"><span>06</span>Experience</button>
-          <button class="step-link" type="button" data-step="6"><span>07</span>Generate</button>
+          <button class="step-link active" type="button" data-step="0">Foundation</button>
+          <button class="step-link" type="button" data-step="1">Positioning</button>
+          <button class="step-link" type="button" data-step="2">Personality</button>
+          <button class="step-link" type="button" data-step="3">References</button>
+          <button class="step-link" type="button" data-step="4">Visual system</button>
+          <button class="step-link" type="button" data-step="5">Experience</button>
+          <button class="step-link" type="button" data-step="6">Generate</button>
         </nav>
 
         <div class="sidebar-footer">
-          <span id="progressText">Step 1 of 7</span>
+          <span id="progressText">Foundation</span>
           <div class="progress-track"><span id="progressBar"></span></div>
         </div>
       </aside>
@@ -48,7 +101,7 @@
 
           <section class="form-step active" data-panel="0">
             <div class="section-heading">
-              <p class="step-kicker">01 / Foundation</p>
+              <p class="step-kicker">Foundation</p>
               <h2>Start with the business.</h2>
               <p>Capture the facts that every design decision should serve.</p>
             </div>
@@ -106,7 +159,7 @@
 
           <section class="form-step" data-panel="1">
             <div class="section-heading">
-              <p class="step-kicker">02 / Positioning</p>
+              <p class="step-kicker">Positioning</p>
               <h2>Define the point of view.</h2>
               <p>Strong visual systems begin with a clear position—not decoration.</p>
             </div>
@@ -145,7 +198,7 @@
 
           <section class="form-step" data-panel="2">
             <div class="section-heading">
-              <p class="step-kicker">03 / Personality</p>
+              <p class="step-kicker">Personality</p>
               <h2>Locate the brand on the spectrum.</h2>
               <p>Choose the position that feels most natural. The middle is intentionally valid.</p>
             </div>
@@ -177,7 +230,7 @@
 
           <section class="form-step" data-panel="3">
             <div class="section-heading">
-              <p class="step-kicker">04 / References</p>
+              <p class="step-kicker">References</p>
               <h2>Build a shared visual language.</h2>
               <p>References are useful when the reason matters more than the URL.</p>
             </div>
@@ -207,7 +260,7 @@
 
           <section class="form-step" data-panel="4">
             <div class="section-heading">
-              <p class="step-kicker">05 / Visual system</p>
+              <p class="step-kicker">Visual system</p>
               <h2>Choose the visual ingredients.</h2>
               <p>These choices will become concrete tokens and implementation rules.</p>
             </div>
@@ -241,7 +294,7 @@
 
           <section class="form-step" data-panel="5">
             <div class="section-heading">
-              <p class="step-kicker">06 / Experience</p>
+              <p class="step-kicker">Experience</p>
               <h2>Shape how the interface behaves.</h2>
               <p>Density, depth, motion, and accessibility complete the system.</p>
             </div>
@@ -272,7 +325,7 @@
 
           <section class="form-step" data-panel="6">
             <div class="section-heading final-heading">
-              <p class="step-kicker">07 / Generate</p>
+              <p class="step-kicker">Generate</p>
               <h2>Your Codex-ready brief.</h2>
               <p>Review the summary, generate the working brief, then copy, download, or email it.</p>
             </div>
@@ -308,9 +361,14 @@
           </div>
         </form>
       </section>
+      </div>
     </main>
 
+    <footer class="site-footer"><div><span>Brand Discovery Studio</span><p>A professional discovery tool by Josie Widdi.</p></div><a href="#top">Back to top ↑</a></footer>
+
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <script src="./app.js"></script>
   </body>
 </html>
